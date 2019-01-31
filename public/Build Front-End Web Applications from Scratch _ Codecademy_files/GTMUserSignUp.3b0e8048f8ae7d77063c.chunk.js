@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[160],{OwHC:function(n,t,e){"use strict";e.r(t);var s=e("wz8U"),u=e("jdWZ"),a={track:function track(){s.a.get("push_sign_up_event")&&Object(u.a)("user_sign_up")}};t.default=a}}]);
-//# sourceMappingURL=GTMUserSignUp.3b0e8048f8ae7d77063c.chunk.js.map
