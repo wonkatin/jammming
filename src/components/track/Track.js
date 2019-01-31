@@ -14,7 +14,7 @@ class Track extends React.Component {
   renderAction(){
     if(isRemoval){
       return <a className="Track-action"> - </a>
-    } return <a className="Track-action"> + </a>
+    } return <a className="Track-action" onClick={this.addTrack}> + </a>
   }
 
   render() {
