@@ -5,6 +5,11 @@ class SearchBar extends React.Component {
   constructor(props){
     super(props);
 
+//step to add searchResults state NOT included in codecademy instructions
+    this.state = {
+      term: ''
+    };
+
     this.search = this.search.bind(this);
     this.handleTermChange = this.handleTermChange.bind(this);
   }
@@ -16,13 +21,13 @@ class SearchBar extends React.Component {
   handleTermChange(event) {
     this.setState({term: event.target.value});
   }
-
+// step to add "on click" to SEARCH, not included in codecademy instructions
   render() {
     return (
       <div className="SearchBar">
         <input placeholder="Enter A Song, Album, or Artist"
                onChange={this.handleTermChange}/>
-        <a href='www.#.com'>SEARCH</a>
+        <a onClick={this.search}>SEARCH</a>
       </div>
     )
   }
