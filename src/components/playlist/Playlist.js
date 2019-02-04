@@ -9,7 +9,7 @@ class Playlist extends React.Component {
   }
 
   handleNameChange(event){
-    this.props.onNameChange(event.target.value)
+    this.props.onNameChange(event.target.value);
   }
 
   render() {
@@ -22,7 +22,7 @@ class Playlist extends React.Component {
                      isRemoval={true}/>
         <a className="Playlist-save" onClick={this.props.onSave}>SAVE TO SPOTIFY</a>
       </div>
-    )
+    );
   }
 }
 

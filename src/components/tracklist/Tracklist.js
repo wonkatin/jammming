@@ -15,8 +15,8 @@ class Tracklist extends React.Component {
           })
         }
       </div>
-    )
+    );
   }
-};
+}
 
 export default Tracklist;
