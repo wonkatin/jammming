@@ -4,8 +4,9 @@ import Track from '../track/Track';
 
 class Tracklist extends React.Component {
   render() {
-    return(
+    return (
       <div className="Tracklist">
+
         {this.props.tracks.map(track => {
           return <Track key={track.id}
                         track={track}
@@ -15,7 +16,7 @@ class Tracklist extends React.Component {
           })
         }
       </div>
-    );
+    )
   }
 }
 

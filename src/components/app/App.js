@@ -30,28 +30,33 @@ class App extends React.Component {
   }
 
   addTrack(track) {
-    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-      return this.setState({playlistTracks: track});
-    }
+    let tracks = this.state.playlistTracks;
+    tracks.push(track);
+
+    this.setState({playlistTracks: tracks});
   }
 
   removeTrack(track){
-    if (this.state.playlistTracks.filter(savedTrack => savedTrack.id !== track.id)) {
-      return this.setState({playlistTracks: track});
-    }
+    let tracks = this.state.playlistTracks;
+    tracks = tracks.filter(savedTrack => savedTrack.id !== track.id);
+
+    this.setState({playlistTracks: tracks});
+
   }
 
   updatePlaylistName(name){
-    return this.setState({playlistName: name})
+    this.setState({playlistName: name});
   }
 
   savePlaylist(){
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
-      this.setState({
-        playlistName: 'New Playlist',
-        playlistTracks: []
-      });
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(response => {
+      if (response) {
+        this.setState({
+          playlistName: 'New Playlist',
+          playlistTracks: []
+        });
+      }
     });
   }
 
@@ -71,7 +76,7 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 };
 
