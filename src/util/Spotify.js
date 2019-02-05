@@ -1,7 +1,8 @@
 const clientId = 'a9ab2b43e063408bba388d9faf5545f1';
 const redirectUri = 'http://localhost:3000/';
 
-let accessToken = '';
+let accessToken;
+let expirationTime;
 
 const Spotify = {
   getAccessToken(){
@@ -12,7 +13,7 @@ const Spotify = {
     const expirationTimeMatch = window.location.href.match(/access_token=([^&]*)/);
     if (accessTokenMatch && expirationTimeMatch){
       accessToken = accessTokenMatch[1];
-      const expirationTime = expirationTimeMatch[1];
+      expirationTime = expirationTimeMatch[1];
       window.setTimeout(() => accessToken = '', expirationTime * 1000);
       window.history.pushState('Access Token', null, '/');
       return accessToken;
@@ -23,14 +24,13 @@ const Spotify = {
   },
 
   search(term) {
-    const accessToken = this.getAccessToken();
+    let accessToken = this.getAccessToken();
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
-    }).then(response => {
-          return response.json();
-      }).then(jsonResponse => {
+    }).then(response => response.json()
+      ).then(jsonResponse => {
         if (jsonResponse.tracks.items) {
         return jsonResponse.tracks.items.map(track => ({
           id: track.id,
@@ -39,13 +39,13 @@ const Spotify = {
           album: track.album.name,
           uri: track.uri
         }));
-      } return [];
+      }
       });
   },
 
-  async savePlaylist(name, trackURIs){
+  savePlaylist(name, trackURIs){
     if(!name || !trackURIs.length) {
-      return;
+      return Promise.resolve();
     }
       const accessToken = this.getAccessToken();
       const headers = {
