@@ -5,7 +5,6 @@ class SearchBar extends React.Component {
   constructor(props){
     super(props);
 
-//step to add searchResults state NOT included in codecademy instructions
     this.state = {
       term: ''
     };
@@ -21,7 +20,7 @@ class SearchBar extends React.Component {
   handleTermChange(event) {
     this.setState({term: event.target.value});
   }
-// step to add "on click" to SEARCH, not included in codecademy instructions
+
   render() {
     return (
       <div className="SearchBar">
